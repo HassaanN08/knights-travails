@@ -72,8 +72,8 @@ const getShortestPath = (startPos, endPos, visited = new Set(), list = [], queue
     for (let i = 1; i <= 8; i++) {
         if (nextPos[i][0] <= 7 && nextPos[i][0] >= 0 && nextPos[i][1] <= 7 && nextPos[i][1] >= 0) {
             let nextNode = nextPos[i];
-            if (!visited.has(`${nextNode.node[0]},${nextNode.node[1]}`)) {
-                visited.add(`${nextNode.node[0]},${nextNode.node[1]}`);
+            if (!visited.has(`${nextNode[0]},${nextNode[1]}`)) {
+                visited.add(`${nextNode[0]},${nextNode[1]}`);
                 queue.enque(Node(nextNode, newStartPos));
             }
             else continue;
