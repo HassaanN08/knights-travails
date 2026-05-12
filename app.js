@@ -80,10 +80,10 @@ const knightMoves = (startPos, endPos) => {
 
     let shortestPath = getShortestPath(startPos, endPos);
 
-    let path = [];
+    let path = new Set();
 
     while(shortestPath) {
-        path.unshift(shortestPath.node);
+        path = new Set([shortestPath.node, ...path]);
         shortestPath = shortestPath.parentNode;
     }
 
