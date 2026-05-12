@@ -41,7 +41,7 @@ Base Case: If the New Start Position is equal to the final position, return the 
 Recursive Call Returns: List
 */
 
-const getShortestPath = (startPos, endPos, visited = new Set(), list = [], queue = Queue()) => {
+const getShortestPath = (startPos, endPos, visited = new Set(), queue = Queue()) => {
 
     if (queue.getTailCount() === 0) {
         const startNode = Node(startPos);
@@ -80,7 +80,7 @@ const getShortestPath = (startPos, endPos, visited = new Set(), list = [], queue
         }
     }
 
-    return getShortestPath(startPos, endPos, visited, list, queue);
+    return getShortestPath(startPos, endPos, visited, queue);
 }
 
 const knightMoves = (startPos, endPos) => {
