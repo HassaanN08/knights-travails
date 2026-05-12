@@ -41,9 +41,13 @@ Base Case: If the New Start Position is equal to the final position, return the 
 Recursive Call Returns: List
 */
 
-const getShortestPath = (startPos, endPos, list = [], queue = Queue()) => {
+const getShortestPath = (startPos, endPos, visited = [], list = [], queue = Queue()) => {
 
-    if (queue.getTailCount() === 0) queue.enque(Node(startPos));
+    if (queue.getTailCount() === 0) {
+        const startNode = Node(startPos);
+        visited.push(startNode.node)
+        queue.enque(startNode);
+    }
 
     let newStartPos = queue.dequeu();
 
@@ -67,11 +71,16 @@ const getShortestPath = (startPos, endPos, list = [], queue = Queue()) => {
 
     for (let i = 1; i <= 8; i++) {
         if (nextPos[i][0] <= 7 && nextPos[i][0] >= 0 && nextPos[i][1] <= 7 && nextPos[i][1] >= 0) {
-            queue.enque(Node(nextPos[i], newStartPos));
-        } else continue;
+            let nextNode = nextPos[i];
+            if (!visited.includes(nextNode.node)) {
+                visited.push(nextNode.node);
+                queue.enque(Node(nextNode, newStartPos));
+            }
+            else continue;
+        }
     }
 
-    return getShortestPath(startPos, endPos, list, queue);
+    return getShortestPath(startPos, endPos, visited, list, queue);
 }
 
 const knightMoves = (startPos, endPos) => {
@@ -80,10 +89,10 @@ const knightMoves = (startPos, endPos) => {
 
     let shortestPath = getShortestPath(startPos, endPos);
 
-    let path = new Set();
+    let path = [];
 
     while(shortestPath) {
-        path = new Set([shortestPath.node, ...path]);
+        path.unshift(shortestPath.node);
         shortestPath = shortestPath.parentNode;
     }
 
