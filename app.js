@@ -35,10 +35,10 @@ const Queue = () => {
 }
 
 /*
-Function: adjacencyList
-Purpose: Return an Adjacency List with all the possible moves from the starting position, up until the final position
-Base Case: If the New Start Position is equal to the final position, return the list;
-Recursive Call Returns: List
+Function: getShortedtPath
+Purpose: Get shortest path between vertex A and B
+Base Case: If the New Start Position is equal to the final position, return the Node;
+Recursive Call Returns: End Node
 */
 
 const getShortestPath = (startPos, endPos, visited = new Set(), queue = Queue()) => {
